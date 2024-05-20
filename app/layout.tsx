@@ -1,4 +1,9 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
+
+import { Header } from "@/components/header";
+import { ThemeProvider } from "@/components/theme-provider";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,8 +17,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
