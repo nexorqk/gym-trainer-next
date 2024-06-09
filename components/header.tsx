@@ -6,12 +6,12 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
-} from "@clerk/nextjs";
-import { Loader } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { ModeToggle } from "./mode-toggle";
+} from "@clerk/nextjs"
+import { Loader } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "./ui/button"
+import { ModeToggle } from "./mode-toggle"
 
 export const Header = () => (
   <header className="p-4 flex items-center border-b-2 border-stone-200">
@@ -40,4 +40,4 @@ export const Header = () => (
       </ClerkLoaded>
     </div>
   </header>
-);
+)

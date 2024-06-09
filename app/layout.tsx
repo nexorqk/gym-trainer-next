@@ -1,20 +1,20 @@
-import { ClerkProvider } from "@clerk/nextjs";
-import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs"
+import type { Metadata } from "next"
 
-import { Header } from "@/components/header";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Header } from "@/components/header"
+import { ThemeProvider } from "@/components/theme-provider"
 
-import "./globals.css";
+import "./globals.css"
 
 export const metadata: Metadata = {
   title: "Gym Trainer App",
   description: "App for gym trainers",
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <ClerkProvider>
@@ -32,5 +32,5 @@ export default function RootLayout({
         </body>
       </html>
     </ClerkProvider>
-  );
+  )
 }

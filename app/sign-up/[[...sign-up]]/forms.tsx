@@ -1,11 +1,10 @@
-"use client";
+"use client"
 
-import { SignUp } from "@clerk/nextjs";
-
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
+import { z } from "zod"
+import Link from "next/link"
+import { SignUp } from "@clerk/nextjs"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import {
   Form,
@@ -15,16 +14,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/components/ui/form"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/use-toast";
+} from "@/components/ui/select"
+import { Button } from "@/components/ui/button"
+import { toast } from "@/components/ui/use-toast"
 
 const FormSchema = z.object({
   email: z
@@ -32,14 +31,14 @@ const FormSchema = z.object({
       required_error: "Please select an email to display.",
     })
     .email(),
-});
+})
 
 export const SignUpTrainer = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-  });
+  })
 
-  localStorage.setItem("sign-up", JSON.stringify(form.getValues()));
+  localStorage.setItem("sign-up", JSON.stringify(form.getValues()))
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
@@ -49,7 +48,7 @@ export const SignUpTrainer = () => {
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
-    });
+    })
   }
   return (
     <>
@@ -89,12 +88,19 @@ export const SignUpTrainer = () => {
               </FormItem>
             )}
           />
+          {/* TODO Multi select on selects */}
           <Button type="submit">Submit</Button>
         </form>
       </Form>
       {form.formState.isSubmitSuccessful && <SignUp path="/sign-up" />}
     </>
-  );
-};
+  )
+}
 
-export const SignUpClient = () => {};
+export const SignUpClient = () => {
+  return (
+    <div>
+      <h1>Client</h1>
+    </div>
+  )
+}
