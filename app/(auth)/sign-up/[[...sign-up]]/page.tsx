@@ -3,7 +3,7 @@ import { SignUpClient, SignUpTrainer } from "./forms"
 
 export default function Page() {
   return (
-    <Tabs defaultValue="trainer">
+    <Tabs defaultValue="trainer" className="w-full">
       <TabsList className="w-full">
         <TabsTrigger className="w-full" value="client">
           Client
@@ -12,7 +12,7 @@ export default function Page() {
           Trainer
         </TabsTrigger>
       </TabsList>
-      <div className="mx-auto max-w-[600px] flex flex-col items-center space-y-3">
+      <div>
         <TabsContent value="client">
           <SignUpClient />
         </TabsContent>
