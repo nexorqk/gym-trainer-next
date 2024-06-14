@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { MultiSelect } from "@/components/multi-select"
-import { Button } from "@/components/ui/button"
+import { MultiSelect } from "@/components/multi-select";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -9,48 +9,46 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { useToast } from "@/components/ui/use-toast"
-import { specificSportArr, sportTypesArr } from "@/constants"
-import { SignUp } from "@clerk/nextjs"
-import * as React from "react"
+} from "@/components/ui/select";
+import { specificSportArr, sportTypesArr } from "@/constants";
+import { SignUp } from "@clerk/nextjs";
+import { FormEvent, useEffect, useState } from "react";
 
 export const SignUpTrainer = () => {
-  const [sportType, setSportType] = React.useState("wrestling")
-  const [selectedSpecific, setSelectedSpecific] = React.useState<string[]>([])
-  const [specificSportNumber, setSpecificSportNumber] = React.useState(0)
-  const [finalSelectOption, setFinalSelectOption] = React.useState(
+  const [sportType, setSportType] = useState("wrestling");
+  const [selectedSpecific, setSelectedSpecific] = useState<string[]>([]);
+  const [specificSportNumber, setSpecificSportNumber] = useState(0);
+  const [finalSelectOption, setFinalSelectOption] = useState(
     specificSportArr[0]["wrestling"]
-  )
-  const [success, setSuccess] = React.useState(false)
+  );
+  const [success, setSuccess] = useState(false);
 
-  const { toast } = useToast()
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    console.log("handle submit")
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    console.log("handle submit");
     localStorage.setItem(
       "sign-up-data",
       JSON.stringify({ sportType, selectedSpecific })
-    )
+    );
     if (selectedSpecific.length > 0) {
-      setSuccess(true)
-    } else {
-      toast({
-        title: "Choose your specific options",
-        description: "Not chosen specific sport",
-        variant: "destructive",
-      })
+      setSuccess(true);
     }
+    //  else {
+    //   toast({
+    //     title: "Choose your specific options",
+    //     description: "Not chosen specific sport",
+    //     variant: "destructive",
+    //   });
+    // }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     const number = specificSportArr.findIndex(
       (item) => Object.keys(item)[0] === sportType
-    )
-    setSpecificSportNumber(number)
-    setFinalSelectOption(specificSportArr[specificSportNumber][sportType])
-  }, [sportType, specificSportNumber])
+    );
+    setSpecificSportNumber(number);
+    setFinalSelectOption(specificSportArr[specificSportNumber][sportType]);
+  }, [sportType, specificSportNumber]);
 
   return (
     <div className="w-3/4 mx-auto space-y-6">
@@ -91,13 +89,16 @@ export const SignUpTrainer = () => {
       </form>
       {success && <SignUp path="/sign-up" />}
     </div>
-  )
-}
+  );
+};
 
 export const SignUpClient = () => {
   return (
-    <div>
-      <h1>Client</h1>
+    <div className="w-3/4 mx-auto space-y-4">
+      <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+        Client registration
+      </h3>
+      <SignUp path="/sign-up" />
     </div>
-  )
-}
+  );
+};

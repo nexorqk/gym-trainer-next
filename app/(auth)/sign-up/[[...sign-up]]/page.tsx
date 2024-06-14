@@ -1,15 +1,15 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { SignUpClient, SignUpTrainer } from "./forms"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SignUpClient, SignUpTrainer } from "./forms";
 
 export default function Page() {
   return (
-    <Tabs defaultValue="trainer" className="w-full">
+    <Tabs defaultValue="client" className="w-full">
       <TabsList className="w-full">
         <TabsTrigger className="w-full" value="client">
-          Client
+          Клиент
         </TabsTrigger>
         <TabsTrigger className="w-full" value="trainer">
-          Trainer
+          Тренер
         </TabsTrigger>
       </TabsList>
       <div>
@@ -21,5 +21,5 @@ export default function Page() {
         </TabsContent>
       </div>
     </Tabs>
-  )
+  );
 }

@@ -1,5 +1,10 @@
-import { SignIn } from "@clerk/nextjs"
+import { SignIn } from "@clerk/nextjs";
 
 export default function Page() {
-  return <SignIn path="/sign-in" />
+  return (
+    <>
+      <h2 className="text-2xl">Войти в свой аккаунт</h2>
+      <SignIn path="/sign-in" />
+    </>
+  );
 }
